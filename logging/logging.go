@@ -3,7 +3,8 @@ package logging
 import (
 	"log"
 	"os"
-
+	"time"
+	
 	"github.com/google/uuid"
 )
 
@@ -14,7 +15,9 @@ var (
 )
 
 func init() {
-	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	currentTime := time.Now()
+
+	file, err := os.OpenFile("logs" + currentTime.Format("2006-01-02") + ".log" , os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -20,23 +20,23 @@ func dbConnect(dsn string) (*sql.DB) {
         log.Fatal(err)
     }
 
-	return db
+    return db
 }
 
 func dbQuery(db *sql.DB, queryString string) (*sql.Rows) {
-	rows, err := db.Query(queryString)
-	if err != nil {
+    rows, err := db.Query(queryString)
+    if err != nil {
         log.Fatal(err)
     }
 
-	return rows
+    return rows
 }
 
 func main() {
-	db := dbConnect("user:password@tcp(127.0.0.1:3306)/lutetium")
-	defer db.Close()
+    db := dbConnect("user:password@tcp(127.0.0.1:3306)/lutetium")
+    defer db.Close()
 
-	rows := dbQuery(db, "SELECT product_id, product_name FROM products")
+    rows := dbQuery(db, "SELECT product_id, product_name FROM products")
     defer rows.Close()
 
     for rows.Next() {
@@ -55,6 +55,6 @@ func main() {
     if err := rows.Err(); err != nil {
         log.Fatal(err)
     }
-    
+
     log.Fatal(http.ListenAndServe(":8080", nil))
 }

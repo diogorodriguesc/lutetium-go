@@ -14,22 +14,31 @@ type Product struct {
     ProductName string
 }
 
-func main() {
-    dsn := "user:password@tcp(127.0.0.1:3306)/lutetium"
+func dbConnect(dsn string) (*sql.DB) {
     db, err := sql.Open("mysql", dsn)
     if err != nil {
         log.Fatal(err)
     }
-    defer db.Close()
 
-    // Query to select data
-    rows, err := db.Query("SELECT product_id, product_name FROM products")
-    if err != nil {
+	return db
+}
+
+func dbQuery(db *sql.DB, queryString string) (*sql.Rows) {
+	rows, err := db.Query(queryString)
+	if err != nil {
         log.Fatal(err)
     }
+
+	return rows
+}
+
+func main() {
+	db := dbConnect("user:password@tcp(127.0.0.1:3306)/lutetium")
+	defer db.Close()
+
+	rows := dbQuery(db, "SELECT product_id, product_name FROM products")
     defer rows.Close()
 
-    // Iterate over the rows
     for rows.Next() {
         var productId int
         var productName string
@@ -43,7 +52,6 @@ func main() {
         fmt.Printf("Id: %d Name: %s\n", product.ProductId, product.ProductName)
     }
 
-    // Check for errors after iterating over rows
     if err := rows.Err(); err != nil {
         log.Fatal(err)
     }

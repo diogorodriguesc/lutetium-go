@@ -1,4 +1,4 @@
-package main
+package lutetiumgo
 
 import (
 	"encoding/xml"
@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func (sitemap *Sitemap) Location() string { return sitemap.xml.location }
+func (sitemap *Sitemap) Location() string { return sitemap.Xml.Location }
 
 func (sitemap *Sitemap) Read() *UrlSet {
 	file, err := os.Open(sitemap.Location())
@@ -26,21 +26,4 @@ func (sitemap *Sitemap) Read() *UrlSet {
 	}
 
 	return &UrlSet
-}
-
-func main() {
-	sitemap := &Sitemap{
-		xml: Xml{
-			location: "sitemaps.xml",
-		},
-	}
-
-	_, err := fmt.Fprintf(os.Stdout, "Location %s\n", sitemap.Location())
-	if err != nil {
-		return
-	}
-
-	UrlSet := sitemap.Read()
-
-	fmt.Fprintf(os.Stdout, "Sitemap Xmlns %v\n", UrlSet.Xmlns)
 }

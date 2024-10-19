@@ -1,4 +1,4 @@
-module github.com/diogorodriguesc/lutetium-golang
+module github.com/diogorodriguesc/lutetium-go
 
 go 1.17
 

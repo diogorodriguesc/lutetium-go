@@ -1,2 +1,5 @@
 golang-application
 *.log
+*.exe
+vendor
+.idea

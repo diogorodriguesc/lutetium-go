@@ -1,11 +1,11 @@
-package main
+package lutetiumgo
 
 import "testing"
 
 func TestSitemap_Location(t *testing.T) {
 	sitemap := &Sitemap{
-		xml: Xml{
-			location: "https://location/sitemap.xml",
+		Xml: Xml{
+			Location: "https://location/sitemap.xml",
 		},
 	}
 
@@ -16,8 +16,8 @@ func TestSitemap_Location(t *testing.T) {
 
 func TestSitemap_Read(t *testing.T) {
 	sitemap := &Sitemap{
-		xml: Xml{
-			location: "sitemaps.xml",
+		Xml: Xml{
+			Location: "sitemaps.xml",
 		},
 	}
 

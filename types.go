@@ -1,13 +1,13 @@
-package main
+package lutetiumgo
 
 import "encoding/xml"
 
 type Xml struct {
-	location string
+	Location string
 }
 
 type Sitemap struct {
-	xml Xml
+	Xml Xml
 }
 
 type UrlSet struct {

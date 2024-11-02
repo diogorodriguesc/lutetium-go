@@ -10,7 +10,7 @@ import (
 func main() {
 	sitemap := &lutetiumgo.Sitemap{
 		Xml: lutetiumgo.Xml{
-			Location: "sitemaps.xml",
+			Location: "../../sitemaps.xml",
 		},
 	}
 

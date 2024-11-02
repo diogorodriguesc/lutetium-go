@@ -2,12 +2,8 @@ package lutetiumgo
 
 import "encoding/xml"
 
-type Xml struct {
-	Location string
-}
-
 type Sitemap struct {
-	Xml Xml
+	Path string
 }
 
 type UrlSet struct {

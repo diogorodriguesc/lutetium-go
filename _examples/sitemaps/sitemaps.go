@@ -9,15 +9,10 @@ import (
 
 func main() {
 	sitemap := &lutetiumgo.Sitemap{
-		Xml: lutetiumgo.Xml{
-			Location: "../../sitemaps.xml",
-		},
+		Path: "../../sitemaps.xml",
 	}
 
-	_, err := fmt.Fprintf(os.Stdout, "Location %s\n", sitemap.Location())
-	if err != nil {
-		return
-	}
+	fmt.Fprintf(os.Stdout, "Path %s\n", sitemap.Path)
 
 	UrlSet := sitemap.Read()
 

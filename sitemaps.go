@@ -6,14 +6,17 @@ import (
 	"os"
 )
 
-func (sitemap *Sitemap) Location() string { return sitemap.Xml.Location }
-
 func (sitemap *Sitemap) Read() *UrlSet {
-	file, err := os.Open(sitemap.Location())
+	file, err := os.Open(sitemap.Path)
 	if err != nil {
 		fmt.Printf("Error opening file: %v\n", err)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
 
 	decoder := xml.NewDecoder(file)
 
